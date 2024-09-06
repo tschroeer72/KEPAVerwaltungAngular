@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { LoginComponent } from './modules/layout/login/login.component';
 
 export const routes: Routes = [
   {
@@ -6,6 +7,11 @@ export const routes: Routes = [
     pathMatch: 'full',
     loadChildren: () =>
       import('./modules/home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path: 'login',
+    pathMatch: 'full',
+    component: LoginComponent
   },
   {
     path: 'mitglieder',

@@ -1,10 +1,11 @@
-<mat-nav-list class="justify-content-start">
-  @for (item of navigation; track $index) {
-  <a [routerLink]="item.link" (click)="onSidenavClose()" mat-list-item>
-    <mat-icon>{{item.icon}}</mat-icon>{{item.name}}</a>
-  }
-</mat-nav-list>
-
+<div class="justify-content-start">
+  <mat-nav-list>
+    @for (item of navigation; track $index) {
+    <a [routerLink]="item.link" (click)="onSidenavClose()" mat-list-item>
+      <mat-icon>{{item.icon}}</mat-icon>{{item.name}}</a>
+    }
+  </mat-nav-list>
+</div>
 <!-- <mat-menu #menu="matMenu"> 
   @for (item of navigation; track $index) {
     <button mat-menu-item routerLink="{{item.link}}" (click)="onSidenavClose()">
