@@ -12,8 +12,8 @@
                     <wj-flex-grid-column [header]="'Bezeichnung'" [binding]="'Bezeichnung'" [align]="'left'" ></wj-flex-grid-column> 
                     <wj-flex-grid-column [header]="'Beginn'" [binding]="'Beginn'" format="dd.MM.yyyy"  [align]="'left'"></wj-flex-grid-column> 
                     <wj-flex-grid-column [header]="'Ende'" [binding]="'Ende'" format="dd.MM.yyyy" [align]="'left'"></wj-flex-grid-column> 
-                    <wj-flex-grid-column [header]="'MeisterschaftstypID'" [binding]="'MeisterschaftstypID'" [visible]="false" ></wj-flex-grid-column> 
-                    <wj-flex-grid-column [header]="'Meisterschaftstyp'" [binding]="'Meisterschaftstyp'" [align]="'left'" ></wj-flex-grid-column> 
+                    <wj-flex-grid-column [header]="'MeisterschaftstypID'" [binding]="'MeisterschaftstypID'" [visible]="false"></wj-flex-grid-column> 
+                    <wj-flex-grid-column [header]="'Meisterschaftstyp'" [binding]="'Meisterschaftstyp'" [align]="'left'"></wj-flex-grid-column> 
                     <wj-flex-grid-column [header]="'Aktiv'" [binding]="'Aktiv'" [align]="'left'"></wj-flex-grid-column> 
                 </wj-flex-grid>            
             </mat-card>
@@ -38,8 +38,6 @@
                                                 <input matInput placeholder="Bezeichnung" formControlName="Bezeichnung">
                                             </mat-form-field>
                                             <div class="col col-1" >
-                                                <!-- <mat-label>Aktiv</mat-label> -->
-                                                <!-- <input matInput placeholder="Aktiv" formControlName="Aktiv"> -->
                                                 <mat-checkbox formControlName="Aktiv">Aktiv</mat-checkbox>
                                             </div>
                                         </div>

@@ -3,7 +3,7 @@
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
-
+@import '@mescius/wijmo.styles/wijmo.css';
 
 // Include the default theme
 @include mat.core();
