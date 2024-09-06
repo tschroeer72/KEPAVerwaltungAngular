@@ -1,0 +1,100 @@
+<div class="container-fluid text-center">
+    <div class="row gx-2">
+        <div class="col col-3">
+            <mat-card appearance="outlined" class="p-1">
+                <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+                    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+                        <button id="btnNodeItem" mat-button (click)="tvShowSelectedNode(node)">{{node.item.Display}}</button>
+                        <!-- {{node.item}} -->
+                    </mat-tree-node>
+
+                    <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+                        <button id="btnNodeIcon" mat-icon-button
+                                [attr.aria-label]="'Toggle ' + node.item" matTreeNodeToggle>
+                            <mat-icon class="mat-icon-rtl-mirror">
+                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                            </mat-icon>
+                        </button>
+                        {{node.item.Display}}
+                            <!-- <button id="btnNodeNode" mat-button (click)="logNode(node)">
+                            {{node.item.Display}}
+                            </button> -->
+                        @if (node.isLoading) {
+                            <mat-progress-bar mode="indeterminate" class="tree-progress-bar"></mat-progress-bar>
+                        }
+                    </mat-tree-node>
+              </mat-tree>
+            </mat-card>
+        </div>
+        <div class="col col-9">
+            <mat-card appearance="outlined">
+                <mat-card-header>  
+                    <mat-card-title>Mitglieddetails</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-tab-group animationDuration="1000ms">
+                        <mat-tab label="Persönliches">
+                            <div class="mt-3">
+                                <form novalidate [formGroup]="mitgliederPersoenlichesForm">
+                                    <div class="row">
+                                        <mat-form-field class="col-2" appearance="outline">
+                                            <mat-label>ID</mat-label>
+                                            <input matInput placeholder="ID" formControlName="ID">
+                                        </mat-form-field>
+                                        <mat-form-field class="col-5" appearance="outline">
+                                            <mat-label>Vorname</mat-label>
+                                            <input matInput placeholder="Vorname" formControlName="Vorname">
+                                        </mat-form-field>
+                                        <mat-form-field class="col-5" appearance="outline">
+                                            <mat-label>Nachname</mat-label>
+                                            <input matInput placeholder="Nachname" formControlName="Nachname">
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="row">
+                                        <mat-form-field class="col-12" appearance="outline">
+                                            <mat-label>Display</mat-label>
+                                            <input matInput placeholder="Display" formControlName="Display">
+                                        </mat-form-field>
+                                    </div>
+                                </form>
+                            </div>
+                        </mat-tab> 
+                        <mat-tab label="Notizen">
+                            <div class="mt-3">
+                                <form novalidate [formGroup]="mitgliederNotizenForm">
+                                    <div class="row">
+                                        <mat-form-field class="col-12" appearance="outline">
+                                            <mat-label>Notzigen</mat-label>
+                                            <textarea  matInput placeholder="Notizen" formControlName="Notizen"> </textarea>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="row">
+                                        <mat-form-field class="col-12" appearance="outline">
+                                            <mat-label>Bemerkungen</mat-label>
+                                            <textarea  matInput placeholder="Bemerkungen" formControlName="Bemerkungen"></textarea>
+                                        </mat-form-field>
+                                    </div>
+                                </form>
+                            </div>
+                        </mat-tab> 
+                        <mat-tab label="Ergebnisse">
+                            <div class="mt-3">
+                                <p>Ergebnisse</p>
+                            </div>
+                        </mat-tab> 
+                        <mat-tab label="Statistik">
+                            <div class="mt-3">
+                                <p>Statistik</p>
+                            </div>
+                        </mat-tab> 
+                    </mat-tab-group>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button>Neues Mitglied</button>
+                    <button mat-button>Bearbeiten</button>
+                    <button mat-button disabled="">Speichern</button>
+                  </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

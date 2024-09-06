@@ -1,0 +1,113 @@
+<div class="container-fluid text-center">
+    <div class="row justify-content-center gx-2">
+        <div class="col col-5">
+            <mat-card appearance="outlined" class="p-1">
+                <!-- ['ID', 'Bezeichnung', 'Beginn', 'Ende', 'MeisterschaftstypID', 'Meisterschaftstyp', 'Aktiv']; -->
+                <wj-flex-grid #fgMeisterschaften 
+                    [itemsSource]="fgDataMeisterschaften" 
+                    (initialized)="fgMeisterschaftenInit()" 
+                    (selectionChanged)="fgMeisterschaftenSelectedRow()"
+                    [isReadOnly]="true"> 
+                    <wj-flex-grid-column [header]="'ID'" [binding]="'ID'" [visible]="false"></wj-flex-grid-column> 
+                    <wj-flex-grid-column [header]="'Bezeichnung'" [binding]="'Bezeichnung'" [align]="'left'" ></wj-flex-grid-column> 
+                    <wj-flex-grid-column [header]="'Beginn'" [binding]="'Beginn'" format="dd.MM.yyyy"  [align]="'left'"></wj-flex-grid-column> 
+                    <wj-flex-grid-column [header]="'Ende'" [binding]="'Ende'" format="dd.MM.yyyy" [align]="'left'"></wj-flex-grid-column> 
+                    <wj-flex-grid-column [header]="'MeisterschaftstypID'" [binding]="'MeisterschaftstypID'" [visible]="false" ></wj-flex-grid-column> 
+                    <wj-flex-grid-column [header]="'Meisterschaftstyp'" [binding]="'Meisterschaftstyp'" [align]="'left'" ></wj-flex-grid-column> 
+                    <wj-flex-grid-column [header]="'Aktiv'" [binding]="'Aktiv'" [align]="'left'"></wj-flex-grid-column> 
+                </wj-flex-grid>            
+            </mat-card>
+        </div>
+        <div class="col col-6">
+            <mat-card appearance="outlined">
+                <mat-card-header>  
+                    <mat-card-title>Meisterschaftsdetails</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-tab-group animationDuration="1000ms">
+                            <mat-tab label="Meisterschaftsdaten">
+                                <div class="mt-3">
+                                    <form novalidate [formGroup]="meisterschaftdetailsForm">
+                                        <div class="row">
+                                            <mat-form-field class="col col-2" appearance="outline">
+                                                <mat-label>ID</mat-label>
+                                                <input matInput placeholder="ID" formControlName="ID">
+                                            </mat-form-field>
+                                            <mat-form-field class="col col-4" appearance="outline">
+                                                <mat-label>Bezeichnung</mat-label>
+                                                <input matInput placeholder="Bezeichnung" formControlName="Bezeichnung">
+                                            </mat-form-field>
+                                            <div class="col col-1" >
+                                                <!-- <mat-label>Aktiv</mat-label> -->
+                                                <!-- <input matInput placeholder="Aktiv" formControlName="Aktiv"> -->
+                                                <mat-checkbox formControlName="Aktiv">Aktiv</mat-checkbox>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <mat-form-field class="col col-4" appearance="outline">
+                                                <mat-label>Beginn</mat-label>
+                                                <input matInput [matDatepicker]="pickerBeginn" formControlName="Beginn">
+                                                <mat-datepicker-toggle matIconSuffix [for]="pickerBeginn"></mat-datepicker-toggle>
+                                                <mat-datepicker #pickerBeginn></mat-datepicker>
+                                            </mat-form-field>
+                                            <mat-form-field class="col col-4" appearance="outline">
+                                                <mat-label>Ende</mat-label>
+                                                <input matInput [matDatepicker]="pickerEnde" formControlName="Ende">
+                                                <mat-datepicker-toggle matIconSuffix [for]="pickerEnde"></mat-datepicker-toggle>
+                                                <mat-datepicker #pickerEnde></mat-datepicker>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="row">
+                                            <mat-form-field class="col col-7" appearance="outline">
+                                                <mat-label>Meisterschaftstyp</mat-label>
+                                                <mat-select [formControl]="typControl" name="MeisterschaftstypID">
+                                                    @for (typ of meisterschaftstypen; track typ) {
+                                                      <mat-option [value]="typ.ID">{{typ.Meisterschaftstyp}}</mat-option>
+                                                    }
+                                                  </mat-select>
+                                            </mat-form-field>                                            
+                                        </div>
+                                    </form>
+                                </div>
+                            </mat-tab>
+                            <mat-tab label="Teilnehmer">
+                                <div class="row mt-3">
+                                    <mat-label>Aktive Mitglieder</mat-label>
+                                    <wj-flex-grid id="fgAktiveMitglieder" #fgAktiveMitglieder 
+                                        [itemsSource]="fgDataAktiveMitglieder" 
+                                        (initialized)="fgAktiveMitgliederInit()" 
+                                        (selectionChanged)="fgAktiveMitgliederSelectedRow()"
+                                        [isReadOnly]="true"> 
+                                        <wj-flex-grid-column [header]="'ID'" [binding]="'ID'" [visible]="false"></wj-flex-grid-column> 
+                                        <wj-flex-grid-column [header]="'Vorname'" [binding]="'Vorname'" [align]="'left'" ></wj-flex-grid-column> 
+                                        <wj-flex-grid-column [header]="'Nachname'" [binding]="'Nachname'" [align]="'left'"></wj-flex-grid-column> 
+                                        <wj-flex-grid-column [header]="'Spitzname'" [binding]="'Spitzname'" [align]="'left'"></wj-flex-grid-column> 
+                                    </wj-flex-grid>     
+                                </div>
+                                <div class="row mt-3">
+                                    <mat-label>Aktive Teilnemer</mat-label>
+                                    <wj-flex-grid id="fgTeilnehmer" #fgTeilnehmer 
+                                        [itemsSource]="fgDataTeilnemer" 
+                                        (initialized)="fgTeilnehmerInit()" 
+                                        (selectionChanged)="fgTeilnehmerSelectedRow()"
+                                        [isReadOnly]="true"> 
+                                        <wj-flex-grid-column [header]="'ID'" [binding]="'ID'" [visible]="false"></wj-flex-grid-column> 
+                                        <wj-flex-grid-column [header]="'MitgliederID'" [binding]="'MitgliederID'" [visible]="false"></wj-flex-grid-column> 
+                                        <wj-flex-grid-column [header]="'MeisterschaftID'" [binding]="'MeisterschaftID'" [visible]="false"></wj-flex-grid-column> 
+                                        <wj-flex-grid-column [header]="'Vorname'" [binding]="'Vorname'" [align]="'left'" ></wj-flex-grid-column> 
+                                        <wj-flex-grid-column [header]="'Nachname'" [binding]="'Nachname'" [align]="'left'"></wj-flex-grid-column> 
+                                        <wj-flex-grid-column [header]="'Spitzname'" [binding]="'Spitzname'" [align]="'left'"></wj-flex-grid-column> 
+                                    </wj-flex-grid>   
+                                </div>
+                            </mat-tab>
+                    </mat-tab-group>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button>Neue Meisterschaft</button>
+                    <button mat-button>Bearbeiten</button>
+                    <button mat-button disabled="">Speichern</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>

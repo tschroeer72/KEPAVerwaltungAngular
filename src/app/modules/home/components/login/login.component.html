@@ -1,0 +1,26 @@
+<ng-content></ng-content>
+
+<form [formGroup]="form" (submit)="submitForm()">
+  <mat-form-field [formGroup]="form">
+    <mat-label>Email</mat-label>
+    <input
+      type="email"
+      matInput
+      formControlName="email"
+      placeholder="Ex. pat@example.com"
+    />
+    <mat-error>Please enter valid email!</mat-error>
+  </mat-form-field>
+
+  <mat-form-field [formGroup]="form">
+    <mat-label>Password</mat-label>
+    <input
+      type="password"
+      matInput
+      formControlName="password"
+      placeholder="Ex. 12345"
+    />
+    <mat-error>Please enter valid password!</mat-error>
+  </mat-form-field>
+  <button type="submit">Login</button>
+</form>

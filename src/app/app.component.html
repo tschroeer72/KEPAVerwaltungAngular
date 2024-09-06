@@ -1,0 +1,21 @@
+<div class="container-fluid text-center mx-auto">
+  <app-header
+    [isDarkMode]="isDarkMode"
+    (changeTheme)="changeTheme()"
+    (sidenavToggle)="sidenav.toggle()"
+  ></app-header>
+
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation" mode="over">
+      <app-sidenav
+        [navigation]="navigation"
+        (sidenavClose)="sidenav.close()"
+      ></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet />
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <app-footer></app-footer>
+</div>
