@@ -1,7 +1,7 @@
-<ng-content></ng-content>
+<!-- <ng-content></ng-content> -->
 
 <form [formGroup]="form" (submit)="submitForm()">
-  <mat-form-field [formGroup]="form">
+  <mat-form-field [formGroup]="form" class="me-3">
     <mat-label>Email</mat-label>
     <input
       type="email"
@@ -12,7 +12,7 @@
     <mat-error>Please enter valid email!</mat-error>
   </mat-form-field>
 
-  <mat-form-field [formGroup]="form">
+  <mat-form-field [formGroup]="form" class="me-3">
     <mat-label>Password</mat-label>
     <input
       type="password"
@@ -22,5 +22,5 @@
     />
     <mat-error>Please enter valid password!</mat-error>
   </mat-form-field>
-  <button type="submit">Login</button>
+  <button mat-flat-button color="primary" type="submit">Login</button>
 </form>

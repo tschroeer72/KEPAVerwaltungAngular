@@ -1,13 +1,13 @@
 <header>
   <mat-toolbar class="toolbar">
-    <button mat-icon-button (click)="onToggleSidenav()" class="icon" title="Menu">
+    <button mat-icon-button (click)="onToggleSidenav()"  title="Menu">
       <mat-icon>menu</mat-icon>
     </button>
 
     <span class="ms-2">{{title}}</span>
     <span class="spacer"></span>
     
-    <button mat-icon-button (click)="switchTheme()" class="icon" title="Theme">
+    <button mat-icon-button (click)="switchTheme()" title="Theme" class="me-3">
       @if (isDarkMode) {
       <mat-icon>brightness_high</mat-icon>
       } @else {
@@ -15,6 +15,6 @@
       }
     </button>
     <!-- <a routerLink="/login"  mat-list-item>Login</a> -->
-     <button mat-flat-button routerLink="login">Login</button>
+     <button mat-flat-button color="primary" routerLink="login">Login</button>
   </mat-toolbar>
 </header>

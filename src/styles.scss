@@ -77,8 +77,8 @@ $dark-theme: mat.m2-define-dark-theme((color: (primary: $dark-primary,
 
   header,
   footer {
-    background: #424242;
-    color: mat.m2-get-color-from-palette($dark-accent, "500-contrast");
+    background: #333333;
+    color: #ffffff;
   }
 
   header {
@@ -86,8 +86,9 @@ $dark-theme: mat.m2-define-dark-theme((color: (primary: $dark-primary,
   }
 
   footer {
-    border-top: 2px solid #f3f3f3;
+    border-top: 2px solid #ffffff;
   }
+
   .wj-content {
     border-radius: 4px;
     background-color:#333333;

@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterModule, MatIconModule, MatToolbarModule],
+  imports: [RouterModule, MatIconModule, MatToolbarModule, MatButtonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
