@@ -2,14 +2,14 @@
 
 <form [formGroup]="form" (submit)="submitForm()">
   <mat-form-field [formGroup]="form" class="me-3">
-    <mat-label>Email</mat-label>
+    <mat-label>Username</mat-label>
     <input
-      type="email"
+      type="text"
       matInput
-      formControlName="email"
-      placeholder="Ex. pat@example.com"
+      formControlName="username"
+      placeholder="testuser"
     />
-    <mat-error>Please enter valid email!</mat-error>
+    <mat-error>Please enter valid username!</mat-error>
   </mat-form-field>
 
   <mat-form-field [formGroup]="form" class="me-3">

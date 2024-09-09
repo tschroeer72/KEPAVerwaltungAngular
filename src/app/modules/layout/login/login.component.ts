@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { BackendService } from '../../../services/backend.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -16,17 +18,28 @@ import { MatInputModule } from '@angular/material/input';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit {
-  @Output() emitForm = new EventEmitter<{ email: string; password: string }>();
+export class LoginComponent implements OnInit, OnDestroy {
+  @Output() emitForm = new EventEmitter<{ username: string; password: string }>();
   form: FormGroup = new FormGroup({});
+  login$ = new Subscription();
+
+  constructor(private backendService: BackendService) {
+      
+  }
+
+  ngOnDestroy(): void {
+    //console.log('OnDestroy');
+    this.login$.unsubscribe();
+  }
 
   ngOnInit() {
+    //console.log('OnInit');
     this.createForm();
   }
 
   private createForm() {
     this.form = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl('', [Validators.required]), //, Validators.email
       password: new FormControl('', [
         Validators.required,
         Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/),
@@ -38,7 +51,14 @@ export class LoginComponent implements OnInit {
 
   submitForm() {
     if (this.form.valid) {
-      this.emitForm.emit(this.form.value);
+      //this.emitForm.emit(this.form.value);
+      this.login$ = this.backendService.login(this.form.value.username, this.form.value.password).subscribe(
+        (tk) => {
+          localStorage.setItem('currentUser', this.form.value.username);
+          localStorage.setItem('token', tk.token)
+  
+        }
+      );
     } else {
       this.form.reset();
       this.form.markAllAsTouched();
