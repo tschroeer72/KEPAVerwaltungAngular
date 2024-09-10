@@ -20,6 +20,9 @@ https://www.ag-grid.com/angular-data-grid/getting-started
 
 http://ui-grid.info/
 
+------------
+
+https://dev.to/youssefzidan/handling-http-error-messages-globally-using-interceptors-and-toasters-angular-27bj
 
 ------------
 https://developer.mescius.com/wijmo/docs/GettingStarted/QuickStart/QuickStart-Angular
